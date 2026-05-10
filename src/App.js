@@ -267,13 +267,13 @@ function App() {
   // 🚀 LOAD TASKS
   // ===================================================
 
-  useEffect(() => {
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(() => {
 
   if (token) {
     getTasks();
   }
 
-// eslint-disable-next-line
 }, [token]);
 
   // ===================================================
