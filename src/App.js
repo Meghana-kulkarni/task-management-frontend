@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 function App() {
@@ -109,22 +109,23 @@ function App() {
   // 📄 GET TASKS
   // ===================================================
 
-  const getTasks = async () => {
+  const getTasks = useCallback(async () => {
 
-    try {
+  try {
 
-      const res = await axios.get(`${API}/api/tasks`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+    const res = await axios.get(`${API}/api/tasks`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-      setTasks(res.data);
+    setTasks(res.data);
 
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  } catch (err) {
+    console.log(err);
+  }
+
+}, [API, token]);
 
   // ===================================================
   // ➕ ADD TASK
@@ -273,7 +274,8 @@ useEffect(() => {
   if (token) {
     getTasks();
   }
-}, [token]);
+
+}, [token, getTasks]);
 
   // ===================================================
   // 🎨 UI
