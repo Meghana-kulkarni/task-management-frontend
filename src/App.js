@@ -269,11 +269,12 @@ function App() {
 
   useEffect(() => {
 
-    if (token) {
-      getTasks();
-    }
+  if (token) {
+    getTasks();
+  }
 
-  }, [token]);
+// eslint-disable-next-line
+}, [token]);
 
   // ===================================================
   // 🎨 UI
